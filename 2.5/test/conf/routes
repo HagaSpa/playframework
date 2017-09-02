@@ -13,4 +13,4 @@ GET     /message                    controllers.AsyncController.message
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 # APIController
-GET     /api                           controllers.ApiController.index
+GET     /api                           controllers.ApiController.index(name: String ?= "")
