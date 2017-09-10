@@ -5,12 +5,15 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import play.data.validation.Constraints.Pattern;
 import play.data.validation.ValidationError;
 
 public class CreateApiModel {
 
     private String name;
 
+    // 文字列の先頭と、末尾は「/」以外
+    @Pattern(value = "^[^/].*[^/]$")
     private String target;
 
     public String getName() {
