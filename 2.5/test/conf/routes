@@ -14,3 +14,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 # APIController
 GET     /api                           controllers.ApiController.index(name: String ?= "")
+POST    /api                           controllers.ApiController.create()
