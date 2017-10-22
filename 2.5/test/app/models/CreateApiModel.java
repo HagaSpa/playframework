@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import play.data.validation.Constraints.Pattern;
 import play.data.validation.ValidationError;
+import validators.NameValidator;
 
 public class CreateApiModel {
 
@@ -35,12 +36,16 @@ public class CreateApiModel {
     public List<ValidationError> validate() {
 
         List<ValidationError> errors = new ArrayList<ValidationError>();
+        
+        // フォーマットチェック
+        if (!NameValidator.checkFileName(getName())) {
+            errors.add(new ValidationError("name", "フォーマットが違います"));
+        }
 
         // 半角スラッシュの個数が同じじゃないならエラー
         if (StringUtils.countMatches(getName(), "/") != StringUtils.countMatches(getTarget(), "/")) {
             errors.add(new ValidationError("name", "半角スラッシュの数が違います"));
         }
-
 
         return errors.isEmpty() ? null : errors;
     }
